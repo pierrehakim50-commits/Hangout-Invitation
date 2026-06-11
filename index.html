@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>For Nouran</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: "Georgia", serif;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+background:url("background.jpg") center center/cover no-repeat;
+}
+
+.overlay{
+position:absolute;
+inset:0;
+background:rgba(0,0,0,.55);
+}
+
+.screen{
+position:absolute;
+inset:0;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.card{
+background:rgba(255,255,255,.92);
+padding:40px;
+border-radius:20px;
+text-align:center;
+max-width:500px;
+width:90%;
+box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+h1{
+margin-bottom:20px;
+}
+
+p{
+margin-bottom:25px;
+line-height:1.6;
+}
+
+button{
+padding:12px 24px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-size:16px;
+margin:10px;
+}
+
+.yes{
+background:#d4af37;
+color:white;
+}
+
+.no{
+background:#444;
+color:white;
+position:relative;
+}
+
+.hidden{
+display:none;
+}
+
+select,input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:8px;
+}
+
+.heart{
+position:absolute;
+font-size:24px;
+animation:float 4s linear forwards;
+}
+
+@keyframes float{
+0%{
+transform:translateY(0);
+opacity:1;
+}
+100%{
+transform:translateY(-400px);
+opacity:0;
+}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div id="welcome" class="screen">
+<div class="card">
+<h1>Nouran</h1>
+
+<p>
+I have a small question for you.
+</p>
+
+<button class="yes" onclick="openQuestion()">
+Open Invitation
+</button>
+</div>
+</div>
+
+<div id="question" class="screen hidden">
+<div class="card">
+
+<h1>Would you allow me the pleasure of taking you on a date?</h1>
+
+<button class="yes" onclick="acceptDate()">
+Yes ❤️
+</button>
+
+<button id="noBtn" class="no">
+No
+</button>
+
+</div>
+</div>
+
+<div id="details" class="screen hidden">
+<div class="card">
+
+<h1>Excellent Choice ✨</h1>
+
+<input type="date">
+
+<select>
+<option>Coffee ☕</option>
+<option>Dinner 🍽️</option>
+<option>Movie 🎬</option>
+<option>Walk 🌙</option>
+<option>Surprise Me 🎁</option>
+</select>
+
+<input placeholder="Favorite food">
+
+<button class="yes" onclick="finish()">
+Confirm
+</button>
+
+</div>
+</div>
+
+<div id="final" class="screen hidden">
+<div class="card">
+<h1>Looking forward to it, Nouran.</h1>
+
+<p>
+— Pierre ❤️
+</p>
+</div>
+</div>
+
+<script>
+
+function openQuestion(){
+document.getElementById("welcome").classList.add("hidden");
+document.getElementById("question").classList.remove("hidden");
+}
+
+const noBtn=document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover",()=>{
+
+const x=Math.random()*(window.innerWidth-150);
+const y=Math.random()*(window.innerHeight-100);
+
+noBtn.style.position="fixed";
+noBtn.style.left=x+"px";
+noBtn.style.top=y+"px";
+
+});
+
+function acceptDate(){
+
+document.getElementById("question").classList.add("hidden");
+document.getElementById("details").classList.remove("hidden");
+
+for(let i=0;i<25;i++){
+
+let heart=document.createElement("div");
+
+heart.className="heart";
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.top="100vh";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},4000);
+
+}
+
+}
+
+function finish(){
+
+document.getElementById("details").classList.add("hidden");
+document.getElementById("final").classList.remove("hidden");
+
+}
+
+</script>
+
+</body>
+</html>
